@@ -30,6 +30,12 @@ public class PlayerController : MonoBehaviour
                 movementFilter,
                 castCollision,
                 moveSpeed * Time.fixedDeltaTime + collisionOffset);
+
+            if(count == 0){
+                rb.MovePosition(rb.position + movementInput * moveSpeed * Time.fixedDeltaTime);
+            }
+
+            
         }
     }
 
