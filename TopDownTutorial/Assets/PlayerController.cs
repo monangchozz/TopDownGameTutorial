@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
+    public SwordAttack swordAttack;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
 
-    private void FixedUpdate() {
+    private void FixedUpdate() {  
         if(canMove){
             //if input is not 0, try to move
             if(movementInput != Vector2.zero){
@@ -86,6 +87,15 @@ public class PlayerController : MonoBehaviour
 
     void OnFire (){
         animator.SetTrigger("swordAttack");
+    }
+
+    public void SwordAttack(){
+        LockMovement();
+        if (spriteRenderer.flipX == true){
+            swordAttack.AttackLeft();
+        } else{
+            swordAttack.AttackRight();
+        }
     }
 
     public void LockMovement(){
